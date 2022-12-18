@@ -22,6 +22,7 @@ public class Util {
 
         return resultat;
     }
+    
     public static Stack Decouper(File image ,int n) throws IOException {
         Stack imageDivs = new Stack<BufferedImage>();
         BufferedImage bufferedImage =ImageIO.read(image);
@@ -36,7 +37,8 @@ public class Util {
         }
         return imageDivs ;
     }
-    public  static  byte[] Merge(List paries) throws IOException {
+    
+    public static byte[] Merge(List paries) throws IOException {
 
         int x=0,y=0;
         BufferedImage result = new BufferedImage(
@@ -48,8 +50,8 @@ public class Util {
 
             data = Util.getItemById(i,paries);
 
-            InputStream is = new ByteArrayInputStream(data.getF());
-            BufferedImage bi = ImageIO.read(is);
+            BufferedImage bi = byteToBuffered(data.getF());
+            
             result.createGraphics().drawImage(bi,x,y,null);
             y+= bi.getHeight();
         }
@@ -57,6 +59,7 @@ public class Util {
         ImageIO.write(result, "jpeg", baos);
         return baos.toByteArray();
     }
+    
     public static void DistToSlavers(Stack st , Stack slavers){
         BufferedImage bufferedImage ;
         Iterator<BufferedImage> itr = st.iterator();
@@ -70,8 +73,6 @@ public class Util {
                 @Override
                 public void run() {
                     synchronized (this){
-
-
                         try {
                             Socket socket = new Socket(slaver.host,slaver.port);
                             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -79,6 +80,7 @@ public class Util {
 
                             File f = new File("D:\\buImagePart"+slaver.id+".jpeg");
                             ImageIO.write(bi,"jpeg",f);
+
                             FileInputStream fileInputStream = new FileInputStream(f);
                             byte[] b = new byte[fileInputStream.available()];
                             fileInputStream.read(b);
@@ -112,6 +114,7 @@ public class Util {
 
 
     }
+    
     public static  void getAvailabelSlavers(File file) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -130,6 +133,7 @@ public class Util {
         System.out.println("there are "+Server.numberS+" slaver");
 
     }
+    
     public static Data getItemById(int id,List list){
         Data data = null;
         for (int i = 0 ; i < list.size() ; i++){
@@ -138,5 +142,25 @@ public class Util {
               return data;
         }
         return data ;
+    }
+    
+    public static BufferedImage byteToBuffered(byte[] b) throws IOException{
+        BufferedImage bufferedImage = null;
+        InputStream is = new ByteArrayInputStream(b);
+        bufferedImage = ImageIO.read(is);
+         return bufferedImage ;
+    }
+    
+    public static byte[] bufferedToByte(BufferedImage bi){
+        byte[] bytes  =null ;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(bi, "jpg", baos);
+             bytes = baos.toByteArray();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes ; 
     }
 }

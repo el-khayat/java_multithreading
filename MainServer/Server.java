@@ -15,19 +15,20 @@ public class Server extends Thread {
     public static int He;
     public static int Wi;
     public static int numberS = 3 ;
+    public int port = 3336;
     static Stack  slevers = new Stack<Slaver>();
     ServerSocket serverSocket ;
     static List filtredPartey =new ArrayList<Data>();
     public Server() throws IOException {
-        Util.getAvailabelSlavers(new File("D:\\slavers.txt"));
+        Util.getAvailabelSlavers(new File("./config.txt"));
     }
 
     @Override
     public void run() {
 
         try {
-            serverSocket = new ServerSocket(3336);
-            System.out.println("server is running at port 3334");
+            serverSocket = new ServerSocket(port);
+            System.out.println("server is running at port "+port);
             while (true)
                 new MTClient(serverSocket.accept()).start();
         } catch (IOException e) {
@@ -56,9 +57,10 @@ public class Server extends Thread {
                 out= new ObjectOutputStream(socket.getOutputStream()) ;
                 Data data = (Data) in.readObject();
                 //========
-                File image = new File("D:\\ImageServerinit.jpeg");
+                File image = new File("./assets/ImageServerinit.jpeg");
                 FileOutputStream outf = new FileOutputStream(image);
                 outf.write(data.f);
+                outf.close();
                 Stack st = Util.Decouper(image,Server.numberS);
                 Util.DistToSlavers(st,slevers);
                 new Thread(new Runnable() {
@@ -68,7 +70,7 @@ public class Server extends Thread {
                            //sleep(5000);
                             while (true){
                                 if (filtredPartey.size() < Server.numberS){
-                                    System.out.println("mazaaaaal matjma3 koulchi ");
+                                    System.out.println(" waiting for slavers ... ");
                                     continue;
                                 }
                                 data.setF(Util.Merge(Server.filtredPartey));
