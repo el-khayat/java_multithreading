@@ -12,6 +12,7 @@ public class Util {
         File image = new File("tmpFile.jpeg");
         FileOutputStream fileOutputStream = new FileOutputStream(image);
         fileOutputStream.write(file);
+        fileOutputStream.close();
 
         BufferedImage image2 = ImageIO.read(image);
         ConvolveOp convolution = new ConvolveOp(kernel,ConvolveOp.EDGE_NO_OP,null);

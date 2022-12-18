@@ -1,4 +1,3 @@
-import java.awt.image.Kernel;
 import java.io.*;
 import java.net.Socket;
 
@@ -21,15 +20,18 @@ public class Client {
             FileInputStream fileInputStream = new FileInputStream(imagef);
             byte[] b = new byte[fileInputStream.available()];
             fileInputStream.read(b);
+            fileInputStream.close();
             data.setF(b);
             out.writeObject(data);
             out.flush();
+            
 
             data=(Data)in.readObject();
             File file = new File("D:\\imgTestFinal ga3.jpeg");
             FileOutputStream fileOutputStream=new FileOutputStream(file);
             fileOutputStream.write(data.getF());
             fileOutputStream.close();
+            socket.close();
 
         }catch(IOException e){
             throw new RuntimeException(e);
