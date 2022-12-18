@@ -1,5 +1,4 @@
 import java.awt.image.Kernel;
-import java.io.File;
 import java.io.Serializable;
 
 public class Data implements Serializable {
