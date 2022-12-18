@@ -60,7 +60,7 @@ public class Util {
         return baos.toByteArray();
     }
     
-    public static void DistToSlavers(Stack st , Stack slavers){
+    public static void DistToSlavers(Stack st , Stack slavers,float[] kernel,int h,int w ){
         BufferedImage bufferedImage ;
         Iterator<BufferedImage> itr = st.iterator();
         int x=0,y=0;
@@ -88,6 +88,9 @@ public class Util {
 
                             data.setId(slaver.id);
                             data.setF(b);
+                            data.setHegth(h);
+                            data.setWidth(w);
+                            data.setArrayKirnel(kernel);
                             out.writeObject(data);
 
                             out.flush();

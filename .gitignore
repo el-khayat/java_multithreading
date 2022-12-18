@@ -1,1 +1,4 @@
-  /*.class
+  /Client/*.class  
+  /Slaver/*.class  
+  /MainServer/*.class
+  .gitignore

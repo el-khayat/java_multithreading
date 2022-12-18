@@ -15,6 +15,7 @@ public class Server extends Thread {
     public static int He;
     public static int Wi;
     public static int numberS = 3 ;
+
     public int port = 3336;
     static Stack  slevers = new Stack<Slaver>();
     ServerSocket serverSocket ;
@@ -45,6 +46,11 @@ public class Server extends Thread {
         Socket socket ;
         ObjectInputStream in ;
         ObjectOutputStream out ;
+
+        public  int kernelHeight ;
+        public  int kernelWidth ;
+        public  float[] kernel ;
+
         public MTClient(Socket socket){
             this.socket = socket;
             System.out.println("client coneccted");
@@ -56,13 +62,19 @@ public class Server extends Thread {
                 in = new ObjectInputStream(socket.getInputStream());
                 out= new ObjectOutputStream(socket.getOutputStream()) ;
                 Data data = (Data) in.readObject();
+                kernelHeight = data.hegth;
+                kernelWidth = data.width ;
+                kernel = data.arrayKirnel;
                 //========
                 File image = new File("./assets/ImageServerinit.jpeg");
                 FileOutputStream outf = new FileOutputStream(image);
                 outf.write(data.f);
                 outf.close();
+
                 Stack st = Util.Decouper(image,Server.numberS);
-                Util.DistToSlavers(st,slevers);
+
+                Util.DistToSlavers(st,slevers,kernel,kernelHeight,kernelWidth);
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

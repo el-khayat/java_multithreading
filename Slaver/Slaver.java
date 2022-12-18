@@ -42,7 +42,6 @@ public class Slaver extends Thread {
                 in = new ObjectInputStream(socket.getInputStream());
                 out= new ObjectOutputStream(socket.getOutputStream()) ;
                 Data data = (Data) in.readObject();
-                long start = System.currentTimeMillis();
 
                 int id = data.id;
                 Kernel kernel = new Kernel(data.getWidth(), data.getHegth(),data.getArrayKirnel());
@@ -56,9 +55,6 @@ public class Slaver extends Thread {
                 out.writeObject(data);
                 out.flush();
                 
-                long now = System.currentTimeMillis();
-                System.out.println(" duree est ");
-                System.out.println(now-start);
                 //=======
             } catch (Exception e) {
                 System.out.println(e);

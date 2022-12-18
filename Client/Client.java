@@ -4,7 +4,7 @@ import java.net.Socket;
 public class Client {
 
     public static void main(String[] args) throws IOException {
-        int port = 3334 ;
+        int port = 3336 ;
         String host = "localhost" ;
         String src = "./assets/img.jpeg" ;
         String dis = "./assets/imgFiltred.jpeg" ;
@@ -33,6 +33,9 @@ public class Client {
             data.setWidth(3);
             out.writeObject(data);
             out.flush();
+            // start timer 
+            long start = System.currentTimeMillis();
+
             
             data=(Data)in.readObject();
             File file = new File(dis);
@@ -40,6 +43,9 @@ public class Client {
             fileOutputStream.write(data.getF());
             fileOutputStream.close();
             socket.close();
+            long now = System.currentTimeMillis();
+                System.out.println(" duree est ");
+                System.out.println(now-start);
 
         }catch(IOException e){
             throw new RuntimeException(e);
