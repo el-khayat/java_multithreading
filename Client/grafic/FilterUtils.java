@@ -166,7 +166,7 @@ public  class FilterUtils {
 
             Data data = new Data();
             File imagef = new File(src);
-            FileInputStream fileInputStream = new FileInputStream(imagef);
+            FileInputStream fileInputStream = new FileInputStream(image);
             byte[] b = new byte[fileInputStream.available()];
             fileInputStream.read(b);
             fileInputStream.close();

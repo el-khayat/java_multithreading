@@ -194,35 +194,35 @@ public class Filter extends javax.swing.JFrame implements Serializable{
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon("../assets/icons/Vd-Edge1.png")); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("../assets/icons/Vd-Blur2.png")); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon("../assets/icons/Vd-Blur2.png")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("../assets/icons/Vd-Edge1.png")); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Pictures\\buttons icons\\red.jpeg")); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon("../assets/icons/Vd-Edge2.png")); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon("../assets/icons/ori1gin.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("../assets/icons/Vd-Edge2.png")); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Pictures\\buttons icons\\blue.jpeg")); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon("../assets/icons/Vd-Edge3.png")); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -381,7 +381,7 @@ public class Filter extends javax.swing.JFrame implements Serializable{
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        float[] arrayKirnel = {1/16f, 1/8f,1/16f, 1/8f, 1/4f,1/8f, 1/16f, 1/8f, 1/16f};
+        float[] arrayKirnel = {1f, 0f,-1f, 0f, 0f,0f, -1f, 0f, 1f};
         // 8888
         filter(arrayKirnel);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -394,26 +394,26 @@ public class Filter extends javax.swing.JFrame implements Serializable{
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        float[] arrayKirnel = {1f, 0f,-1f, 0f, 0f,0f, -1f, 0f, 1f};
+        float[] arrayKirnel = {1/16f, 1/8f,1/16f, 1/8f, 1/4f,1/8f, 1/16f, 1/8f, 1/16f};
         filter(arrayKirnel); 
                   // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        float[] arrayKirnel = {0f, -1f,0f, -1f, 5f,-1f, 0f, -1f, 0f};
+        float[] arrayKirnel = {0f, 1f,0f, 1f, -4f,1f, 0f, 1f, 0f};
         filter(arrayKirnel); 
                // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        float[] arrayKirnel = {0f, -1f,0f, -1f, 5f,-1f, 0f, -1f, 0f};
+        float[] arrayKirnel = {0f, 1f,0f, 1f, -4f,1f, 0f, 1f, 0f};
         // done 4
         filter(arrayKirnel); 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        float[] arrayKirnel = {0f, -1f,0f, -1f, 5f,-1f, 0f, -1f, 0f};
+        float[] arrayKirnel = {-1, -1f,-1f, -1f, 8f,-1f, -1f, -1f, -1f};
         filter(arrayKirnel);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
