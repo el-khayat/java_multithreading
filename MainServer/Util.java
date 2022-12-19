@@ -62,12 +62,14 @@ public class Util {
     
     public static void DistToSlavers(Stack st , Stack slavers,float[] kernel,int h,int w ){
         BufferedImage bufferedImage ;
+        Stack slaversClone =  (Stack) slavers.clone();
+
         Iterator<BufferedImage> itr = st.iterator();
         int x=0,y=0;
         while (itr.hasNext())
         {
             BufferedImage bi = itr.next();
-            Server.Slaver slaver = (Server.Slaver) slavers.pop();
+            Server.Slaver slaver =(Server.Slaver) slaversClone.pop();
 
             new Thread(new Runnable() {
                 @Override
@@ -78,7 +80,7 @@ public class Util {
                             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 
-                            File f = new File("D:\\buImagePart"+slaver.id+".jpeg");
+                            File f = new File("./assets/uImagePart"+slaver.id+".jpeg");
                             ImageIO.write(bi,"jpeg",f);
 
                             FileInputStream fileInputStream = new FileInputStream(f);
@@ -111,7 +113,7 @@ public class Util {
 
                     }
                 }
-            }).start();
+            },"distrub").start();
         }
 
 
@@ -128,6 +130,8 @@ public class Util {
             if (line ==null)break;
             String [] slaverline = line.split(";");
             Server.Slaver slaver = new Server.Slaver(slaverline[1],Integer.parseInt(slaverline[2]),Integer.parseInt(slaverline[0]));
+            System.out.println("---------------------- slavers---------------");
+            System.out.println(slaverline[1]+" @"+Integer.parseInt(slaverline[2])+"@"+Integer.parseInt(slaverline[0]));
             Server.slevers.push(slaver);
             nbrLine++;
 

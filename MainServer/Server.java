@@ -14,15 +14,17 @@ public class Server extends Thread {
 
     public static int He;
     public static int Wi;
-    public static int numberS = 3 ;
+    public static int numberS;
 
     public int port = 3336;
     static Stack  slevers = new Stack<Slaver>();
     ServerSocket serverSocket ;
     static List filtredPartey =new ArrayList<Data>();
+
     public Server() throws IOException {
         Util.getAvailabelSlavers(new File("./config.txt"));
     }
+ 
 
     @Override
     public void run() {
@@ -88,6 +90,8 @@ public class Server extends Thread {
                                 data.setF(Util.Merge(Server.filtredPartey));
                                 out.writeObject(data);
                                 out.flush();
+                                Server.filtredPartey.clear();
+                                System.out.println("sizw of filtred  part images afted merging is"+Server.filtredPartey.size());
                                 break;
                             }
                         }catch (IOException e) {
@@ -95,7 +99,7 @@ public class Server extends Thread {
                         }
                         }
 
-                }).start();
+                },"merger thread ").start();
                 //=======
             } catch (Exception e) {
                 System.out.println(e);
